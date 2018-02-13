@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import * as actions from './redux/actions';
 import Card from './Card';
 import DisplayResults from './DisplayResults';
+import ChosenRestaurant from './ChosenRestaurant';
 
 export class DefaultPage extends Component {
   static propTypes = {
@@ -12,16 +13,37 @@ export class DefaultPage extends Component {
     actions: PropTypes.object.isRequired,
   };
 
-  handleClick = () => {
-    this.props.actions.getRestaurant();
+  chooseRandomRestaurant = () => {
+    const random = Math.floor(Math.random()*this.props.restaurantPicker.selected.length);
+    return this.props.restaurantPicker.selected[random];
   }
 
   displayResults = () => {
-    if (this.props.restaurantPicker.restaurant.businesses) {
-      return <DisplayResults toggleSelected={this.props.actions.toggleSelectedArray} results={this.props.restaurantPicker.restaurant.businesses}/>
+    // If the picking process is not finished...
+    if (!this.props.restaurantPicker.finished) {
+      // ...Display the search results if they've been retrieved.
+      if (this.props.restaurantPicker.restaurants.businesses) {
+        return <DisplayResults 
+          toggleSelected={this.props.actions.toggleSelectedArray} 
+          results={this.props.restaurantPicker.restaurants.businesses}
+          finishSearch={() => {
+            this.props.actions.toggleFinished();
+            this.props.actions.updateChosenRestaurant(this.chooseRandomRestaurant());
+          }}
+        />
+      } 
+      // ...Display loading text if still fetching request.
+      else if (this.props.restaurantPicker.getRestaurantsPending){
+        return (<h2 className="loading-text">Loading...</h2>);
+      } 
+      else {
+        return "";
+      }
+    // If the picking process is finished, display the randomly chosen restaurant
     } else {
-      return "No results to display";
+        return <ChosenRestaurant chosen={this.props.restaurantPicker.chosenRestaurant} />;
     }
+    
   }
 
   render() {
@@ -32,7 +54,7 @@ export class DefaultPage extends Component {
           Query: <input type="text" value={this.props.restaurantPicker.query} onChange={e => this.props.actions.updateQuery(e.target.value)} />        
           <br />
           Location: <input type="text" value={this.props.restaurantPicker.location} onChange={e => this.props.actions.updateLocation(e.target.value)} />
-          <button onClick={this.handleClick}>Submit</button>
+          <button onClick={this.props.actions.getRestaurants}>Submit</button>
         </div>
         {this.displayResults()}
       </div>

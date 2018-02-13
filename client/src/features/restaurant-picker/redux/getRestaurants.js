@@ -1,17 +1,17 @@
 import axios from 'axios';
 import {
-  RESTAURANT_PICKER_GET_RESTAURANT_BEGIN,
-  RESTAURANT_PICKER_GET_RESTAURANT_SUCCESS,
-  RESTAURANT_PICKER_GET_RESTAURANT_FAILURE,
-  RESTAURANT_PICKER_GET_RESTAURANT_DISMISS_ERROR,
+  RESTAURANT_PICKER_GET_RESTAURANTS_BEGIN,
+  RESTAURANT_PICKER_GET_RESTAURANTS_SUCCESS,
+  RESTAURANT_PICKER_GET_RESTAURANTS_FAILURE,
+  RESTAURANT_PICKER_GET_RESTAURANTS_DISMISS_ERROR,
 } from './constants';
 
 // Rekit uses redux-thunk for async actions by default: https://github.com/gaearon/redux-thunk
 // If you prefer redux-saga, you can use rekit-plugin-redux-saga: https://github.com/supnate/rekit-plugin-redux-saga
-export function getRestaurant(args = {}) {
+export function getRestaurants(args = {}) {
   return (dispatch, getState) => { // optionally you can have getState as the second argument
     dispatch({
-      type: RESTAURANT_PICKER_GET_RESTAURANT_BEGIN,
+      type: RESTAURANT_PICKER_GET_RESTAURANTS_BEGIN,
     });
 
     // Return a promise so that you could control UI flow without states in the store.
@@ -30,7 +30,7 @@ export function getRestaurant(args = {}) {
       doRequest.then(
         (res) => {
           dispatch({
-            type: RESTAURANT_PICKER_GET_RESTAURANT_SUCCESS,
+            type: RESTAURANT_PICKER_GET_RESTAURANTS_SUCCESS,
             data: res,
           });
           resolve(res);
@@ -38,7 +38,7 @@ export function getRestaurant(args = {}) {
         // Use rejectHandler as the second argument so that render errors won't be caught.
         (err) => {
           dispatch({
-            type: RESTAURANT_PICKER_GET_RESTAURANT_FAILURE,
+            type: RESTAURANT_PICKER_GET_RESTAURANTS_FAILURE,
             data: { error: err },
           });
           reject(err);
@@ -52,44 +52,47 @@ export function getRestaurant(args = {}) {
 
 // Async action saves request error by default, this method is used to dismiss the error info.
 // If you don't want errors to be saved in Redux store, just ignore this method.
-export function dismissGetRestaurantError() {
+export function dismissGetRestaurantsError() {
   return {
-    type: RESTAURANT_PICKER_GET_RESTAURANT_DISMISS_ERROR,
+    type: RESTAURANT_PICKER_GET_RESTAURANTS_DISMISS_ERROR,
   };
 }
 
 export function reducer(state, action) {
   switch (action.type) {
-    case RESTAURANT_PICKER_GET_RESTAURANT_BEGIN:
+    case RESTAURANT_PICKER_GET_RESTAURANTS_BEGIN:
       // Just after a request is sent
       return {
         ...state,
-        getRestaurantPending: true,
-        getRestaurantError: null,
+        getRestaurantsPending: true,
+        getRestauranstError: null,
+        chosen: {},
+        finished: false,
+        restaurants: []
       };
 
-    case RESTAURANT_PICKER_GET_RESTAURANT_SUCCESS:
+    case RESTAURANT_PICKER_GET_RESTAURANTS_SUCCESS:
       // The request is success
       return {
         ...state,
-        getRestaurantPending: false,
-        getRestaurantError: null,
-        restaurant: action.data.data
+        getRestaurantsPending: false,
+        getRestaurantsError: null,
+        restaurants: action.data.data
       };
 
-    case RESTAURANT_PICKER_GET_RESTAURANT_FAILURE:
+    case RESTAURANT_PICKER_GET_RESTAURANTS_FAILURE:
       // The request is failed
       return {
         ...state,
-        getRestaurantPending: false,
-        getRestaurantError: action.data.error,
+        getRestaurantsPending: false,
+        getRestaurantsError: action.data.error,
       };
 
-    case RESTAURANT_PICKER_GET_RESTAURANT_DISMISS_ERROR:
+    case RESTAURANT_PICKER_GET_RESTAURANTS_DISMISS_ERROR:
       // Dismiss the request failure error
       return {
         ...state,
-        getRestaurantError: null,
+        getRestaurantsError: null,
       };
 
     default:

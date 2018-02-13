@@ -6,11 +6,13 @@
 
 // NOTE: initialState constant is necessary so that Rekit could auto add initial state when creating async actions.
 const initialState = {
-  getRestaurantPending: false,
-  getRestaurantError: null,
+  getRestaurantsPending: false,
+  getRestaurantsError: null,
+  chosenRestaurant: {},
+  finished: false,
   location: '',
   query: '',
-  restaurant: {},
+  restaurants: [],
   selected: [],
 };
 

@@ -1,14 +1,18 @@
 import initialState from './initialState';
-import { reducer as getRestaurantReducer } from './getRestaurant';
+import { reducer as getRestaurantsReducer } from './getRestaurants';
 import { reducer as updateQueryReducer } from './updateQuery';
 import { reducer as updateLocationReducer } from './updateLocation';
 import { reducer as toggleSelectedArrayReducer } from './toggleSelectedArray';
+import { reducer as toggleFinishedReducer } from './toggleFinished';
+import { reducer as updateChosenRestaurantReducer } from './updateChosenRestaurant';
 
 const reducers = [
-  getRestaurantReducer,
+  getRestaurantsReducer,
   updateQueryReducer,
   updateLocationReducer,
   toggleSelectedArrayReducer,
+  toggleFinishedReducer,
+  updateChosenRestaurantReducer,
 ];
 
 export default function reducer(state = initialState, action) {
