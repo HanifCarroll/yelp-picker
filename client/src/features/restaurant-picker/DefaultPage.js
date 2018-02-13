@@ -62,7 +62,9 @@ export class DefaultPage extends Component {
     return (
       <div className="restaurant-picker-default-page">
         <h1>What are you in the mood for?</h1>
-        <input type="text" value={this.props.restaurantPicker.query} onChange={e => this.props.actions.updateQuery(e.target.value)} />
+        Location: <input type="text" value={this.props.restaurantPicker.location} onChange={e => this.props.actions.updateLocation(e.target.value)} />
+        <br />
+        Query: <input type="text" value={this.props.restaurantPicker.query} onChange={e => this.props.actions.updateQuery(e.target.value)} />
         <button onClick={this.handleClick}>Submit</button>
         <Card data={this.data || this.props.restaurantPicker.restaurant}/>
       </div>

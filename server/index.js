@@ -1,18 +1,11 @@
+const express = require('express');
 const bodyParser = require('body-parser');
 const yelp = require('yelp-fusion');
 const cors = require('cors')
-const express = require('express');
-const app = express();
-
 require('dotenv').config()
 const apiKey = process.env.API_KEY;
-
-const searchRequest = {
-  term: '',
-  location: 'port charlotte, fl'
-};
-
 const client = yelp.client(apiKey);
+const app = express();
 
 const search = async () => {
   const result = await client.search(searchRequest).then(response => {
