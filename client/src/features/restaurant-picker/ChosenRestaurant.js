@@ -10,7 +10,7 @@ export default class ChosenRestaurant extends Component {
     return (
       <div className="restaurant-picker-chosen-restaurant">
         <h2>Get ready to chow down at....</h2>
-        <Card data={this.props.chosen} />
+        <Card data={this.props.chosen} finished/>
       </div>
     );
   }

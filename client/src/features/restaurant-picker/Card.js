@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import classNames from 'classnames'
 
 export default class Card extends Component {
   static propTypes = {
@@ -10,16 +11,17 @@ export default class Card extends Component {
   }
 
   toggleSelected = () => {
-    this.setState({selected: !this.state.selected});
-    this.props.toggleSelected(this.props.data);
+    if (!this.props.finished) {
+      this.setState({selected: !this.state.selected});
+      this.props.toggleSelected(this.props.data);
+    }
   }
-
   
-
+"restaurant-picker-card" 
   render() {
     const { data } = this.props;
     return (
-      <div className="restaurant-picker-card" onClick={this.toggleSelected} style={{backgroundColor: this.state.selected ? 'red' : 'white'}}>
+      <div className={classNames({"restaurant-picker-card": true, "selected-card": this.state.selected})} onClick={this.toggleSelected} >
         <img src={data.image_url} alt="picture of restaurant" />
         <p>{data.name}</p>
         <p>{data.rating}/5 - {data.review_count} Reviews</p>

@@ -27,8 +27,13 @@ export class DefaultPage extends Component {
           toggleSelected={this.props.actions.toggleSelectedArray} 
           results={this.props.restaurantPicker.restaurants.businesses}
           finishSearch={() => {
-            this.props.actions.toggleFinished();
-            this.props.actions.updateChosenRestaurant(this.chooseRandomRestaurant());
+            // Make sure at least 1 restaurant is selected
+            if (this.props.restaurantPicker.selected.length) {
+              this.props.actions.toggleFinished();
+              this.props.actions.updateChosenRestaurant(this.chooseRandomRestaurant());
+            } else {
+              alert("You haven't selected any restaurants to pick from!")
+            }
           }}
         />
       } 

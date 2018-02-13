@@ -65,8 +65,8 @@ export function reducer(state, action) {
       return {
         ...state,
         getRestaurantsPending: true,
-        getRestauranstError: null,
-        chosen: {},
+        getRestaurantsError: null,
+        chosenRestaurant: {},
         finished: false,
         restaurants: []
       };
