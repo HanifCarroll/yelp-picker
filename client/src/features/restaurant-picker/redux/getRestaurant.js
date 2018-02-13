@@ -27,7 +27,6 @@ export function getRestaurant(args = {}) {
         term: query,
         location: location
       });
-      console.log(getState().restaurantPicker.query)
       doRequest.then(
         (res) => {
           dispatch({

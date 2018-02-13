@@ -10,7 +10,8 @@ const initialState = {
   getRestaurantError: null,
   location: '',
   query: '',
-  restaurant: {}
+  restaurant: {},
+  selected: [],
 };
 
 export default initialState;
