@@ -56,10 +56,13 @@ export class DefaultPage extends Component {
       <div className="restaurant-picker-default-page">
         <div className="restaurant-picker-top">
           <h1>What are you in the mood for?</h1>
-          Query: <input type="text" value={this.props.restaurantPicker.query} onChange={e => this.props.actions.updateQuery(e.target.value)} />        
-          <br />
-          Location: <input type="text" value={this.props.restaurantPicker.location} onChange={e => this.props.actions.updateLocation(e.target.value)} />
-          <button onClick={this.props.actions.getRestaurants}>Submit</button>
+          <div className="query-form">
+            <form onSubmit={(e) => e.preventDefault()}>
+            <input type="text" placeholder="Search for..." value={this.props.restaurantPicker.query} onChange={e => this.props.actions.updateQuery(e.target.value)} />        
+            <input type="text" placeholder="Near..." value={this.props.restaurantPicker.location} onChange={e => this.props.actions.updateLocation(e.target.value)} />
+            <button onClick={this.props.actions.getRestaurants}>Submit</button>
+            </form>
+          </div>
         </div>
         {this.displayResults()}
       </div>

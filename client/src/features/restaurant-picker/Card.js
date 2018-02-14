@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames'
+import ReactStars from 'react-stars'
 
 export default class Card extends Component {
   static propTypes = {
@@ -22,9 +23,19 @@ export default class Card extends Component {
     const { restaurant } = this.props;
     return (
       <div className={classNames({"restaurant-picker-card": true, "selected-card": this.state.selected})} onClick={this.toggleSelected} >
-        <img src={restaurant.image_url} alt="picture of restaurant" />
-        <p>{restaurant.name}</p>
-        <p>{restaurant.rating}/5 - {restaurant.review_count} Reviews</p>
+        <a href={restaurant.url} target="_blank">
+          <img src={restaurant.image_url} alt="picture of restaurant" onClick={(e) => e.stopPropagation()}/>
+          <p>{restaurant.name}</p>
+        </a>
+        <p>
+          <ReactStars
+            count={5}
+            value={restaurant.rating}
+            size={30}
+            edit={false}
+          />
+        <p>{restaurant.review_count} Reviews</p>
+        </p>
         <p>{restaurant.price}</p>
         <br/>
         <p>{restaurant.location.address1}</p>

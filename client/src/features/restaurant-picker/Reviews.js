@@ -13,7 +13,11 @@ export class Reviews extends Component {
 
   renderBody = () => {
     if (this.props.restaurantPicker.reviews.length) {
-      return this.props.restaurantPicker.reviews.map(review => <ReviewCard review={review}/>);
+      return (
+        <div className="reviews">
+          {this.props.restaurantPicker.reviews.map(review => <ReviewCard review={review} key={review.id}/>)}
+        </div>
+      );
     } else if (this.props.restaurantPicker.getReviewsPending) {
       return <p>Loading...</p>
     } else {
@@ -26,6 +30,8 @@ export class Reviews extends Component {
       <div className="restaurant-picker-reviews">
         <div className="restaurant-picker-reviews-header">
           <h3>What are people saying about {chosenRestaurant.name}?</h3>
+          <br />
+          <p>Click the review to read the full entry on Yelp!</p>
         </div>
           <div className="restaurant-picker-reviews-body">
            {this.renderBody()}
