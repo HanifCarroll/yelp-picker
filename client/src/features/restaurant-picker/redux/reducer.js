@@ -5,6 +5,7 @@ import { reducer as updateLocationReducer } from './updateLocation';
 import { reducer as toggleSelectedArrayReducer } from './toggleSelectedArray';
 import { reducer as toggleFinishedReducer } from './toggleFinished';
 import { reducer as updateChosenRestaurantReducer } from './updateChosenRestaurant';
+import { reducer as getReviewsReducer } from './getReviews';
 
 const reducers = [
   getRestaurantsReducer,
@@ -13,6 +14,7 @@ const reducers = [
   toggleSelectedArrayReducer,
   toggleFinishedReducer,
   updateChosenRestaurantReducer,
+  getReviewsReducer,
 ];
 
 export default function reducer(state = initialState, action) {

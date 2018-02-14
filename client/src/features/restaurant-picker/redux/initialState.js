@@ -14,6 +14,9 @@ const initialState = {
   query: '',
   restaurants: [],
   selected: [],
+  getReviewsPending: false,
+  getReviewsError: null,
+  reviews: []
 };
 
 export default initialState;

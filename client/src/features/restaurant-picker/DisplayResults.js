@@ -12,7 +12,7 @@ export default class DisplayResults extends Component {
         <div className="restaurant-picker-display-results-list">
           {this.props.results.map(result => {
             return <Card 
-              data={result} 
+              restaurant={result} 
               toggleSelected={this.props.toggleSelected} 
               key={result.id}
             />

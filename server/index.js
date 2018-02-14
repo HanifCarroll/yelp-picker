@@ -27,13 +27,10 @@ const searchTerm = async (term, location) => {
   return result;
 }
 
-// client.search(searchRequest).then(response => {
-//   const firstResult = response.jsonBody.businesses[0];
-//   const prettyJson = JSON.stringify(firstResult, null, 4);
-//   console.log(prettyJson);
-// }).catch(e => {
-//   console.log(e);
-// });
+const getReviews = async id => {
+  const result = await client.reviews(id).then(response => response.jsonBody.reviews);
+  return result;
+}
 
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -48,6 +45,11 @@ app.post('/', async (req, res, next) => {
   const { term, location } = req.body;
   const results = await searchTerm(term, location);
   res.send(results);
+});
+
+app.get('/reviews/:id', async (req, res, next) => {
+  const reviews = await getReviews(req.params.id);
+  res.send(reviews);
 });
 
 const PORT = process.env.PORT || 5000;

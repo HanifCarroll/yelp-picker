@@ -13,22 +13,22 @@ export default class Card extends Component {
   toggleSelected = () => {
     if (!this.props.finished) {
       this.setState({selected: !this.state.selected});
-      this.props.toggleSelected(this.props.data);
+      this.props.toggleSelected(this.props.restaurant);
     }
   }
   
 "restaurant-picker-card" 
   render() {
-    const { data } = this.props;
+    const { restaurant } = this.props;
     return (
       <div className={classNames({"restaurant-picker-card": true, "selected-card": this.state.selected})} onClick={this.toggleSelected} >
-        <img src={data.image_url} alt="picture of restaurant" />
-        <p>{data.name}</p>
-        <p>{data.rating}/5 - {data.review_count} Reviews</p>
-        <p>{data.price}</p>
+        <img src={restaurant.image_url} alt="picture of restaurant" />
+        <p>{restaurant.name}</p>
+        <p>{restaurant.rating}/5 - {restaurant.review_count} Reviews</p>
+        <p>{restaurant.price}</p>
         <br/>
-        <p>{data.location.address1}</p>
-        <p>{data.location.city}, {data.location.state}</p>
+        <p>{restaurant.location.address1}</p>
+        <p>{restaurant.location.city}, {restaurant.location.state}</p>
       </div>
     );
   }
