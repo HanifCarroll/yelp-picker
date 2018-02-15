@@ -1,18 +1,24 @@
 @import '../../styles/mixins';
 
+
 .restaurant-picker-review-card {
   border-radius: 20px;
   border: 2px solid black;
-  height: 350px;
+  height: 300px;
   margin: 20px auto;
   padding: 10px 50px;
-  width: 70%;
+  width: 40%;
   color: black;
 
   img {
     border-radius: 50%;
-    height: 150px;
-    width: 150px;
+    height: 80px;
+    width: 80px;
+  }
+
+  span {
+    display: inline-block !important;
+    float: none !important;
   }
   
 }
@@ -21,7 +27,38 @@ a {
   text-decoration: none;
 }
 
-span {
-    display: inline-block !important;
-    float: none !important;
+
+@media screen and (max-width: 950px) {
+  .restaurant-picker-review-card {
+    display: grid;
+    height: 180px;
+    width: 90%;
+    padding: 20px 20px 0 20px;
+    grid-template-columns: 3fr 1fr;
+    grid-column-gap: 20px;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+      "text image"
+      "rating name";
+    
+  }
+
+  .review-rating {
+    grid-area: rating;
+    margin-top: 5px;
+    text-align: left;
+  }
+
+  .review-text {
+    grid-area: text;
+    text-align: left;
+  }
+
+  .review-image {
+    grid-area: image;
+  }
+  
+  .review-name {
+    grid-area: name;
+  }
 }

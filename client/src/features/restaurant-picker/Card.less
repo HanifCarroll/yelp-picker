@@ -5,7 +5,7 @@
   border: 2px solid black;
   border-radius: 20px;
   margin: 10px auto;
-  height: 300px;
+  height: 320px;
   padding: 20px 0;
   width: 300px;
   text-align: center;
@@ -19,6 +19,27 @@
     margin: 0 auto 10px auto;
 
   }
+
+  p {
+    margin-bottom: 5px;
+  }
+
+  .restaurant-name {
+    margin-top: 10px;
+  }
+
+  span {
+    display: inline-block !important;
+    float: none !important;
+  }
+
+  a {
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    height: 150px;
+    width: 150px;
+  }
 }
 
 .selected-card {
@@ -29,15 +50,144 @@
     -moz-transform: translate(0,-10px);
   }
 
-span {
-    display: inline-block !important;
-    float: none !important;
+@media screen and (max-width: 500px) {
+  .selected-card {
+      background-color: red;
+      transform: translate(10px, 0px);
+      -webkit-transform: translate(10px,0px);
+      -o-transform: translate(10px, 0px); 
+      -moz-transform: translate(10px,0px);
+    }
+
+  .restaurant-picker-card {
+    display: grid;
+    grid-template-columns: 1fr 4fr 2fr;
+    grid-column-gap: 10px;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+      "picture name address"
+      "picture rating address"
+      "picture price address"
+      "picture reviews .";
+    align-items: center;
+    margin: 10px auto;
+    height: 130px;
+    padding: 10px;
+    width: 100%;
+
+    img {
+      display: block;
+      border-radius: 50%;
+      height: 70px;
+      width: 70px;
+      margin: 30% 0 0px auto;
+    }
+
+      a {
+      height: 70px;
+      width: 70px;
+    }
+
+    .restaurant-image {
+      grid-area: picture;
+    }
+
+    .restaurant-name {
+      grid-area: name;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+
+    .restaurant-price {
+      grid-area: price;
+    }
+
+    .restaurant-rating {
+      grid-area: rating;
+      position: relative;
+      top: -30px;
+    }
+
+    .restaurant-reviews {
+      grid-area: reviews;
+      position: relative;
+      top: -50px;
+    }
+
+    .restaurant-address {
+      grid-area: address;
+      line-height: 1.3em;
+    }
+  }
 }
 
-a {
-  display: inline-block;
-  text-decoration: none;
-  color: black;
-  height: 150px;
-  width: 150px;
+@media screen and (min-width: 501px) and (max-width: 760px) {
+  .selected-card {
+      background-color: red;
+      transform: translate(10px, 0px);
+      -webkit-transform: translate(10px,0px);
+      -o-transform: translate(10px, 0px); 
+      -moz-transform: translate(10px,0px);
+    }
+
+  .restaurant-picker-card {
+    display: grid;
+    grid-template-columns: 1fr 4fr 2fr;
+    grid-column-gap: 10px;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+      "picture name address"
+      "picture rating address"
+      "picture price ."
+      "picture reviews .";
+    align-items: center;
+    margin: 10px auto;
+    height: 130px;
+    padding: 10px 30px;
+    width: 80%;
+
+    img {
+      display: block;
+      border-radius: 50%;
+      height: 70px;
+      width: 70px;
+      margin: 30% 0 0px auto;
+    }
+
+      a {
+      height: 70px;
+      width: 70px;
+    }
+
+    .restaurant-image {
+      grid-area: picture;
+    }
+
+    .restaurant-name {
+      grid-area: name;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+
+    .restaurant-price {
+      grid-area: price;
+    }
+
+    .restaurant-rating {
+      grid-area: rating;
+      position: relative;
+      top: -30px;
+    }
+
+    .restaurant-reviews {
+      grid-area: reviews;
+      position: relative;
+      top: -50px;
+    }
+
+    .restaurant-address {
+      grid-area: address;
+      line-height: 1.3em;
+    }
+  }
 }

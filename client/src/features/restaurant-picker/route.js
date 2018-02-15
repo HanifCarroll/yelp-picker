@@ -9,3 +9,4 @@ export default {
     { path: 'default-page', name: 'Default page', component: DefaultPage, isIndex: true },
   ],
 };
+
