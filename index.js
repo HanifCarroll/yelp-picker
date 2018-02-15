@@ -42,7 +42,7 @@ app.get('/reviews/:id', async (req, res, next) => {
   res.send(reviews);
 });
 
-app.get('*', async (req, res, next) => {
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
 
