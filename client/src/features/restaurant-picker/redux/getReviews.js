@@ -23,7 +23,7 @@ export function getReviews(args = {}) {
       // See the real-word example at:  https://github.com/supnate/rekit/blob/master/src/features/home/redux/fetchRedditReactjsList.js
       // args.error here is only for test coverage purpose.
       const { chosenRestaurant } = getState().restaurantPicker;
-      const doRequest = axios.get(`http://localhost:5000/reviews/${chosenRestaurant.id}`);
+      const doRequest = axios.get(`https://pick-my-eats.herokuapp.com/reviews/${chosenRestaurant.id}`);
       doRequest.then(
         (res) => {
           dispatch({

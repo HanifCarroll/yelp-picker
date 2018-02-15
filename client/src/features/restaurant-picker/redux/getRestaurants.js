@@ -23,7 +23,7 @@ export function getRestaurants(args = {}) {
       // See the real-word example at:  https://github.com/supnate/rekit/blob/master/src/features/home/redux/fetchRedditReactjsList.js
       // args.error here is only for test coverage purpose.
       const { query, location } = getState().restaurantPicker;
-      const doRequest = axios.post('http://localhost:5000', {
+      const doRequest = axios.post('https://pick-my-eats.herokuapp.com/', {
         term: query,
         location: location
       });
