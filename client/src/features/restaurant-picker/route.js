@@ -3,10 +3,9 @@ import {
 } from './';
 
 export default {
-  path: 'restaurant-picker',
-  name: 'Restaurant picker',
+  path: '/',
+  name: '/',
   childRoutes: [
     { path: 'default-page', name: 'Default page', component: DefaultPage, isIndex: true },
   ],
 };
-

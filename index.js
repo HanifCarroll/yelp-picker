@@ -7,16 +7,6 @@ const apiKey = process.env.API_KEY;
 const client = yelp.client(apiKey);
 const app = express();
 
-const search = async () => {
-  const result = await client.search(searchRequest).then(response => {
-    const results = response.jsonBody;
-    //const firstResult = response.jsonBody.businesses[0];
-    return results;
-    //return firstResult;
-  });
-  return result;
-}
-
 const searchTerm = async (term, location) => {
   const result = await client.search({
     term,
