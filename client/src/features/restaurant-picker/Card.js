@@ -27,14 +27,14 @@ export default class Card extends Component {
           <img className="restaurant-image" src={restaurant.image_url} alt="picture of restaurant" onClick={(e) => e.stopPropagation()}/>
         </a>
         <p className="restaurant-name">{restaurant.name}</p>
-        <p className="restaurant-rating">
+        <div className="restaurant-rating">
           <ReactStars
             count={5}
             value={restaurant.rating}
             size={25}
             edit={false}
           />
-        </p>
+        </div>
         <p className="restaurant-reviews">{restaurant.review_count} Reviews</p>
         <p className="restaurant-price">{restaurant.price}</p>      
         <br/>

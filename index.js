@@ -31,13 +31,13 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 
-app.post('/', async (req, res, next) => {
+app.post('/api', async (req, res, next) => {
   const { term, location } = req.body;
   const results = await searchTerm(term, location);
   res.send(results);
 });
 
-app.get('/reviews/:id', async (req, res, next) => {
+app.get('/api/reviews/:id', async (req, res, next) => {
   const reviews = await getReviews(req.params.id);
   res.send(reviews);
 });
