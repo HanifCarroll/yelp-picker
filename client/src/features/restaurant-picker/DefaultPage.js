@@ -22,7 +22,10 @@ export class DefaultPage extends Component {
     // If the picking process is not finished...
     if (!this.props.restaurantPicker.finished) {
       // ...Display the search results if they've been retrieved.
-      if (this.props.restaurantPicker.restaurants.businesses) {
+      if (this.props.restaurantPicker.restaurants.total == 0 || this.props.restaurantPicker.restaurants === "") {
+        return (<h2 className="loading-text">No results found.</h2>);
+      }
+      else if (this.props.restaurantPicker.restaurants.businesses) {
         return <DisplayResults 
           toggleSelected={this.props.actions.toggleSelectedArray} 
           results={this.props.restaurantPicker.restaurants.businesses}

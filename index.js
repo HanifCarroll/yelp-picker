@@ -14,6 +14,8 @@ const searchTerm = async (term, location) => {
     location
   }).then(response => {
     return response.jsonBody;
+  }).catch(err => {
+    console.log(err)
   });
   return result;
 }
