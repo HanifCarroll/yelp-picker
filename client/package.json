@@ -11,7 +11,8 @@
     "studioPort": 6076,
     "buildPort": 6077,
     "plugins": [],
-    "css": "less"
+    "css": "less",
+    "proxy": "http://localhost:5000"
   },
   "scripts": {
     "start": "node ./tools/server.js",
