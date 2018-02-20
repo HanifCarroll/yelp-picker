@@ -14,7 +14,7 @@ export function reducer(state, action) {
     case RESTAURANT_PICKER_UPDATE_LOCATION:
       return {
         ...state,
-        location: action.location
+        form: {...state.form, location: action.location}
       };
 
     default:

@@ -24,7 +24,24 @@
     margin: 0 auto;
   }
 
-  button {
+  .query-form button {
     height: 2.4em;
+    display: block;
+    margin: 0 auto;
   }
+
+  .options {
+   text-align: left;
+   width: 200px;
+   margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .restaurant-picker-top {
+    .query-form button {
+      display: inline;
+    }
+  }
+    
 }

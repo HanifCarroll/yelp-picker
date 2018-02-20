@@ -8,10 +8,14 @@ const client = yelp.client(apiKey);
 const app = express();
 const path = require('path');
 
-const searchTerm = async (term, location) => {
+const searchTerm = async (term, location, radius, limit, open_now, price) => {
   const result = await client.search({
     term,
-    location
+    location,
+    radius,
+    limit,
+    open_now,
+    price
   }).then(response => {
     return response.jsonBody;
   }).catch(err => {
@@ -34,8 +38,8 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.post('/api', async (req, res, next) => {
-  const { term, location } = req.body;
-  const results = await searchTerm(term, location);
+  let { term, location, radius, resultsLimit, openNow, price } = req.body;
+  const results = await searchTerm(term, location, radius, resultsLimit, openNow, price);
   res.send(results);
 });
 

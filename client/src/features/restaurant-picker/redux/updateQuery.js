@@ -14,7 +14,7 @@ export function reducer(state, action) {
     case RESTAURANT_PICKER_UPDATE_QUERY:
       return {
         ...state,
-        query: action.term
+        form: {...state.form, query: action.term}
       };
 
     default:

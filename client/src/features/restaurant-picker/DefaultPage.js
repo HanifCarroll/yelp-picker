@@ -6,6 +6,7 @@ import * as actions from './redux/actions';
 import Card from './Card';
 import DisplayResults from './DisplayResults';
 import ChosenRestaurant from './ChosenRestaurant';
+import SearchOptions from './SearchOptions';
 
 export class DefaultPage extends Component {
   static propTypes = {
@@ -66,6 +67,7 @@ export class DefaultPage extends Component {
             <button onClick={this.props.actions.getRestaurants}>Submit</button>
             </form>
           </div>
+          <SearchOptions />
         </div>
         {this.displayResults()}
       </div>

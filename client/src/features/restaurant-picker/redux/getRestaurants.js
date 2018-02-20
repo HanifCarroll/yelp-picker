@@ -22,10 +22,21 @@ export function getRestaurants(args = {}) {
       // doRequest is a placeholder Promise. You should replace it with your own logic.
       // See the real-word example at:  https://github.com/supnate/rekit/blob/master/src/features/home/redux/fetchRedditReactjsList.js
       // args.error here is only for test coverage purpose.
-      const { query, location } = getState().restaurantPicker;
+      const { query, location, radius, resultsLimit, openNow, price1, price2, price3, price4 } = getState().restaurantPicker.form;
+      const prices = [price1, price2, price3, price4];
+      let finalPrices = [];
+      for (let i = 0; i < prices.length; i++) {
+        if (prices[i]) {
+          finalPrices.push(i + 1);
+        }
+      }
       const doRequest = axios.post('/api/', {
         term: query,
-        location: location
+        location,
+        radius: radius * 1600,
+        resultsLimit,
+        openNow,
+        price: finalPrices.toString()
       });
       doRequest.then(
         (res) => {
