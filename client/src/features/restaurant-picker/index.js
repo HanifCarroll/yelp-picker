@@ -5,3 +5,4 @@ export { default as ChosenRestaurant } from './ChosenRestaurant';
 export { default as Reviews } from './Reviews';
 export { default as ReviewCard } from './ReviewCard';
 export { default as SearchOptions } from './SearchOptions';
+export { default as Footer } from './Footer';

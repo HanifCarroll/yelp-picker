@@ -7,6 +7,7 @@ import Card from './Card';
 import DisplayResults from './DisplayResults';
 import ChosenRestaurant from './ChosenRestaurant';
 import SearchOptions from './SearchOptions';
+import Footer from './Footer';
 
 export class DefaultPage extends Component {
   static propTypes = {
@@ -70,6 +71,7 @@ export class DefaultPage extends Component {
           <SearchOptions />
         </div>
         {this.displayResults()}
+        <Footer />
       </div>
     );
   }
